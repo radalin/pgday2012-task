@@ -1,0 +1,140 @@
+.clear {
+  clear: both;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-size: 15px;
+    font-family: Verdana;
+    background: url('images/bg.png') repeat-x #C3BAD8;
+}
+
+.header {
+    width: 200px;
+    height: 93px;
+    background-image: url('images/kartaca_logo.png');
+    float: left;
+    margin-left: 20px;
+    position: relative;
+    top: 20px;
+}
+
+.middle {
+    padding: 20px;
+    padding-bottom: 10px;
+    min-height: 500px;
+}
+
+.middle h1 {
+    border-bottom: 1px solid #7172AB;
+    color: #7172AB;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.middle a {
+    color: #555555;
+}
+
+.middle a:hover{
+    text-decoration: underline;
+}
+
+.container {
+  background: white;
+  margin-top: 25px;
+  width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
+}
+
+.footer {
+    border-top: 2px solid gray;
+    margin-top: 10px;
+    background-image: url("images/krtc_footer.png");
+    background-color: white;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 50px;
+    display: block;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.footer div.promote {
+    float: left;
+    padding: 5px 10px;
+}
+
+.footer div.promote a {
+    margin-right: 5px;
+}
+
+.footer p a {
+    font-weight: bold;
+    text-decoration: none;
+    color: gray;
+}
+
+.footer p a:hover {
+    text-decoration: underline;
+}
+
+.footer div.promote div.text {
+    font-size: 10px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.footer p {
+    padding: 10px;
+    font-size: 9px;
+    color: gray;
+    text-align: right;
+    margin-right: 70px;
+}
+
+textarea {
+  width: 380px;
+  height: 120px;
+}
+
+input, select {
+  width: 380px;
+}
+
+.navigation {
+  float: right;
+  margin-right: 30px;
+  margin-top: 20px;
+}
+
+.navigation .menu-item {
+  margin-right: 10px;
+}
+
+form.well ul.errors li {
+    font-size: 12px;
+    color: #B94A48;
+    list-style:none;
+}
+
+.error-message {
+  text-align: center;
+}
+
+dl.zend_form {
+  margin-bottom: 0px;
+}

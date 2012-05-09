@@ -1,0 +1,65 @@
+<?php
+/**
+ * This file is part of pgday2012-task
+ *
+ * Kartaca WBVS is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * Kartaca WBVS is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Kartaca WBVS. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @category   Kartaca
+ * @copyright  Copyright (c) 2012 Kartaca (http://www.kartaca.com)
+ * @license    http://www.gnu.org/licenses/ GPL
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pgday2012 Task List</title>
+    <link rel="stylesheet" href="<?=$this->baseUrl()?>/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<?=$this->baseUrl()?>/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="<?=$this->baseUrl()?>/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <?php echo $this->headLink() ?>
+</head>
+<body>
+    <div class="container">
+        <a href="<?=APPLICATION_INDEX_FILE?>/index/">
+            <div class="header"></div>
+        </a>
+        <div class="clear">
+        <div class="content">
+            <div class="middle">
+                <h1><?php echo $this->title; ?></h1>
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="promote">
+                <div class="text">
+                    <a href="http://www.postgresql.org.tr" target="_blank">PostreSQL Turkiye</a>|
+                    <a href="http://pgday.postgresql.org.tr/2012/" target="_blank">PgDayTR 2012</a>
+                    <br/>
+                    Proud to be a <a href="http://www.gnu.org/licenses/" target="_blank">GPL</a>software | 
+                    <a href="http://www.kartaca.com" target="_blank">Kartaca</a>&copy; <?php echo date("Y");?>
+                </div>
+            </div>
+            <p>
+                <a href="http://www.postgresql.org/" target="_blank">
+                    <img src="http://www.postgresql.org/files/community/propaganda/88x31_2.gif" />
+                </a>
+                <a href="http://framework.zend.com" target="_blank">
+                    <img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" />
+                </a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

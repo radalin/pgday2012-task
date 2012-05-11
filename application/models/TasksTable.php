@@ -22,11 +22,20 @@ class TasksTable extends Zend_Db_Table
 {
     protected $_name = "tasks";
     protected $_rowClass = "Task";
+    protected $_primary = "id";
    
     public function findAll()
     {
         $_select = $this->select();
         $_select->order("status");
+        $_select->order("end_date");
         return $this->fetchAll($_select);
+    }
+    
+    public function updateTaskStatuses()
+    {
+        //Example for running a hand written query on Zend_Db
+        $query = "UPDATE tasks SET status = 'late' WHERE status = 'open' AND end_date IS NOT NULL AND end_date < 'now'";
+        $this->getAdapter()->query($query);
     }
 }

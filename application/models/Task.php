@@ -31,6 +31,9 @@ class Task extends Zend_Db_Table_Row
     
     public function getEndDate()
     {
+        if (null === $this->end_date) {
+            return "";
+        }
         return date("d.m.Y H:i:s", strtotime($this->end_date));
     }
     
@@ -47,5 +50,11 @@ class Task extends Zend_Db_Table_Row
             }
             return $_id;
         }
+    }
+    
+    public function getDiffToThisDay($date = "now")
+    {
+        $d1 = new DateTime("now");
+        return $d1->diff(new DateTime($this->end_date));
     }
 }

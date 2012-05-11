@@ -1,26 +1,72 @@
+<?php
+/**
+ * This file is part of pgday2012-task
+ *
+ * Kartaca WBVS is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * Kartaca WBVS is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Kartaca WBVS. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @category   Kartaca
+ * @copyright  Copyright (c) 2012 Kartaca (http://www.kartaca.com)
+ * @license    http://www.gnu.org/licenses/ GPL
+ */
+?>
 <h2>Current Tasks</h2>
-<table class="table table-bordered table-condensed">
+<table class="table table-bordered table-condensed table-centered" style="text-align: center;">
     <thead>
         <tr>
             <th>#</th>
-            <th>Actions</th>
             <th>Status</th>
             <th>Name</th>
             <th>End Date</th>
+            <th>Actions</th>
     </thead>
     <tbody>
         <?php foreach ($this->items as $task) { ?>
             <tr class="task-status-<?php echo mb_strtolower($task->status) ?>">
                 <td><?php echo $task->id ?></td>
-                <td></td>
-                <td><span class="upper"><?php echo $task->status ?></span></td>
                 <td>
+                    <span class="upper">
+                        <?php echo $task->status ?>
+                    </span>
+                </td>
+                <td class="left">
                     <?php echo $task->name ?>
+                    <?php if (!$task->isDone() && null !== $task->end_date) {
+                        $diff = $task->getDiffToThisDay();
+                        $badgeClass = "warning";
+                        if ($task->status === Task::STATUS_LATE) {
+                            $badgeClass = "important";
+                        }
+                        if ($task->status === Task::STATUS_OPEN && $diff->d > 7) {
+                            //Do nothing for now...
+                        } else { ?>
+                        <sup>
+                            <span class="badge badge-<?php echo $badgeClass ?>" style="font-size: 75%">
+                                <?php echo $diff->d ?> days
+                            </span>
+                        </sup>
+                        <?php } ?>
+                    <?php } ?>
                     <div class="task-desc">
                         <?php echo $task->description ?>
                     </div>
                 </td>
-                <td><?php echo $task->getEndDate() ?></td>
+                <td>
+                    <?php echo $task->getEndDate() ?>
+                </td>
+                <td>
+                    <?php if (!$task->isDone()) { ?>
+                        <a href="<?php printf(APPLICATION_BASEURL_INDEX . "/index/complete/?id=%d", $task->id) ?>" class="btn-mini btn-success complete-btn">Complete</a>
+                    <?php } ?>
+                </td>
             </tr>
         <?php } ?>
     </tbody>

@@ -41,6 +41,8 @@ class IndexController extends Zend_Controller_Action
         $this->_addForm = $this->_newTaskForm();
         $this->_helper->layout->disableLayout();
         $this->_dataTable = new TasksTable();
+        //Run the updater to update all the tasks' statuses!!
+        $this->_dataTable->updateTaskStatuses();
     }
 
     public function indexAction()
@@ -66,6 +68,14 @@ class IndexController extends Zend_Controller_Action
             echo "You Task is saved!";
             //TODO: Return JSON and update the form...
         }
+    }
+    
+    public  function completeAction()
+    {
+        $task = $this->_dataTable->find($this->getRequest()->getParam("id"))->current();
+        $task->status = Task::STATUS_DONE;
+        $task->save();
+        $this->_redirect("index");
     }
     
     private function _newTaskForm()

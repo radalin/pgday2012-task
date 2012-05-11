@@ -117,6 +117,17 @@ body {
     margin-left: auto;
 }
 
+.table-centered td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-centered td.left {
+    text-align: left;
+    vertical-align: up;
+}
+
+
 textarea {
   width: 380px;
   height: 120px;

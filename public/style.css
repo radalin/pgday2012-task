@@ -10,8 +10,11 @@
   float: left;
 }
 
+.upper {
+    text-transform: uppercase;
+}
+
 body {
-    font-size: 15px;
     font-family: Verdana;
     background: url('images/bg.png') repeat-x #C3BAD8;
 }
@@ -92,6 +95,26 @@ body {
     color: gray;
     text-align: right;
     margin-right: 70px;
+}
+
+.task-desc {
+    font-size: 10px;
+    color: gray;
+}
+
+.task-status-done {
+    color: green;
+}
+
+.task-status-late {
+    color: red;
+}
+
+.loading {
+    width: 200px;
+    margin-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 textarea {

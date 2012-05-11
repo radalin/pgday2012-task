@@ -27,12 +27,20 @@ class IndexController extends Zend_Controller_Action
      * @var Zend_Form
      */
     private $_addForm;
+    
+    /**
+     * Data Table
+     *
+     * @var TasksTable
+     */
+    private $_dataTable;
 
     public function init()
     {
         $this->view->title = "PZFP: A Todo List";
         $this->_addForm = $this->_newTaskForm();
         $this->_helper->layout->disableLayout();
+        $this->_dataTable = new TasksTable();
     }
 
     public function indexAction()
@@ -42,12 +50,11 @@ class IndexController extends Zend_Controller_Action
     
     public function listAction()
     {
-        
+        $this->view->items = $this->_dataTable->findAll();
     }
     
     public function formAction()
     {
-        //TODO: Fill in the form details...
         $this->view->form = $this->_addForm;
     }
     
@@ -55,12 +62,15 @@ class IndexController extends Zend_Controller_Action
     {
         $this->_helper->viewRenderer->setNoRender(true);
         if ($this->_addForm->isValid($_POST)) {
+            //TODO: Write the actual save operation...
             echo "You Task is saved!";
+            //TODO: Return JSON and update the form...
         }
     }
     
     private function _newTaskForm()
     {
+        //TODO: Fill in the form details...
         $form = new Zend_Form();
         $form->setAction(APPLICATION_BASEURL_INDEX . "/index/save");
         $form->setMethod("POST");

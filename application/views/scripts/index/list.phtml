@@ -1,1 +1,27 @@
 <h2>Current Tasks</h2>
+<table class="table table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Actions</th>
+            <th>Status</th>
+            <th>Name</th>
+            <th>End Date</th>
+    </thead>
+    <tbody>
+        <?php foreach ($this->items as $task) { ?>
+            <tr class="task-status-<?php echo mb_strtolower($task->status) ?>">
+                <td><?php echo $task->id ?></td>
+                <td></td>
+                <td><span class="upper"><?php echo $task->status ?></span></td>
+                <td>
+                    <?php echo $task->name ?>
+                    <div class="task-desc">
+                        <?php echo $task->description ?>
+                    </div>
+                </td>
+                <td><?php echo $task->getEndDate() ?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>

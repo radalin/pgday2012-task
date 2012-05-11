@@ -18,28 +18,34 @@
  * @license    http://www.gnu.org/licenses/ GPL
  */
 
-class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+class Task extends Zend_Db_Table_Row
 {
-    //All the initializing functions should be protected and started with "_init"
-    protected function _initConstants()
+    const STATUS_DONE = "done";
+    const STATUS_LATE = "late";
+    const STATUS_OPEN = "open";
+    
+    public function isDone()
     {
-        //These constants are used for cases where you are not on the root...
-        define("APPLICATION_BASEURL", $this->_options["baseUrl"]);
-        define("APPLICATION_BASEURL_INDEX", $this->_options["baseUrl"] . "/index.php");
+        return $this->status === "done";
     }
     
-    protected function _initAutoLoader()
+    public function getEndDate()
     {
-        set_include_path(implode(PATH_SEPARATOR, array(
-            APPLICATION_PATH . "/models",
-            get_include_path(),
-        )));
-        spl_autoload_register(function($className) {
-            //Write a very simple custom autoloader for models...
-            if (Zend_Loader::isReadable("{$className}.php")) {
-                require_once("{$className}.php");
+        return date("d.m.Y H:i:s", strtotime($this->end_date));
+    }
+    
+    public function save()
+    {
+        if (null !== $this->id) {
+            $this->_table->update($this->_data, $this->_table->getAdapter()->quoteInto("id = ?", $this->id));
+            return $this->id;
+        } else {
+            $_id = $this->_table->insert($this->_data);
+            if (is_integer($_id)) {
+                $this->id = $_id;
+                return $this->id;
             }
-        });
+            return $_id;
+        }
     }
 }
-

@@ -46,31 +46,30 @@
                         <li class=""><a href="#task-add-new-form" data-toggle="tab">Add New</a></li>
                     </ul>
                     <div class="tab-content" style="border-color: #DDD transparent #DDD #DDD; ">
-                        <div class="tab-pane active" id="task-list">
+                        <div class="tab-pane active" id="task-list" data-url="<?=APPLICATION_BASEURL_INDEX?>/index/list">
                         </div>
-                        <div class="tab-pane" id="task-add-new-form">
+                        <div class="tab-pane" id="task-add-new-form" data-url="<?=APPLICATION_BASEURL_INDEX?>/index/form">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <script type="text/javascript" charset="utf-8">
+            var loadContent = function(el) {
+                //Remove the content and show a loading bar...
+                $(el).html('<div class="loading"><div class="progress progress-success progress-striped active"><div class="bar" style="width: 100%;"></div></div></div>');
+                $(el).load($(el).data("url"), function() {
+     	            $("#task-nav").tab();
+     	        });
+            }
          	$(document).ready(function() {
-        		$('#task-add-new-form').load('<?=APPLICATION_BASEURL_INDEX?>/index/form', function(data) {
-        			$('#task-nav').tab();
-        		});
+         	    $(".tab-pane").each(function(i, el) {
+         	        loadContent(el);  
+         	    })
                 
-                $('#task-list').load('<?=APPLICATION_BASEURL_INDEX?>/index/list', function(data) {
-        			$('#task-nav').tab();
-        		});
-                
-        		$('#task-nav').bind('change', function(e) {
-        			var pattern=/#.+/gi //set a regex pattern (all the things after "#").
-        			var contentID = e.target.toString().match(pattern)[0]; //find pattern
-
-        			$(contentID).load('/'+contentID.replace('#',''), function(){
-        				$('#task-nav').tab(); //reinitialize tabs
-        			});
+        		$('#task-nav a').bind('click', function(e) {
+        		    var el = $(e.currentTarget).attr("href");
+        		    loadContent(el);
         		});
         	});
         </script>

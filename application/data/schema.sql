@@ -11,7 +11,7 @@ create table tasks (
 );
 
 --Define the data data (data data? WTF?)
-insert into tasks (name, description, status, end_date) values ('PgDay icin kodu hazirla', 'Yapacagin sunum icin kodu hazir et ve Github uzerinden sun', 'done', '2012-05-11 15:32:00');
-insert into tasks (name, description, status, end_date) values ('PgDay oncesi yemek', 'Hagander ile tasinacagin yemege git', 'late', '2012-05-11 20:00:00');
-insert into tasks (name, description, status, end_date) values ('PgDay icin blog yaz', 'Super gecen PgDay Turkiye hakkinda bir blog yazisi yaz', 'open', '2012-05-19 00:00:00');
+insert into tasks (name, description, status, end_date) values ('PgDay icin kodu hazirla', 'Yapacagin sunum icin kodu hazir et ve Github uzerinden sun', 'done', '2012-05-11');
+insert into tasks (name, description, status, end_date) values ('PgDay oncesi yemek', 'Hagander ile tasinacagin yemege git', 'late', '2012-05-11');
+insert into tasks (name, description, status, end_date) values ('PgDay icin blog yaz', 'Super gecen PgDay Turkiye hakkinda bir blog yazisi yaz', 'open', '2012-05-19');
 insert into tasks (name, description, status) values ('MySQL projelerini PgSQLe gecirmeye basla', 'Dogru yolu bulmanin vakti geldi.', 'open');

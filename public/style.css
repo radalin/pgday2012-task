@@ -1,13 +1,16 @@
 .clear {
-  clear: both;
+    clear: both;
 }
 
 .fr {
-  float: right;
+    float: right;
 }
 
 .fl {
-  float: left;
+    float: left;
+}
+.hidden {
+    display:none;
 }
 
 .upper {
@@ -143,8 +146,12 @@ form.well ul.errors li {
     list-style:none;
 }
 
-.error-message {
+.form-message {
   text-align: center;
+}
+
+.form-inline-error-message {
+    width: 300px;
 }
 
 dl.zend_form {

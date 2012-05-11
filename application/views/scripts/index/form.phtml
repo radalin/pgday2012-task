@@ -19,14 +19,63 @@
  */
 ?>
 <h2>Add New Task</h2>
+<div class="alert hidden form-message">
+    Ok!
+</div>
 <?php echo $this->form;?>
 <script type="text/javascript" charset="utf-8">
     //Let's override the form's submit action...
     $(document).ready(function() {
         $("#new-task-form").submit(function() {
+            //Remove all the previous info
+            $(".form-message")
+                .removeClass("alert-error")
+                .removeClass("alert-success")
+                .addClass("hidden")
+            $(".form-inline-error-message").remove();
             //TODO: Send the request to the back end and adjust the form...
-            alert("Your Task is saved");
+            var params = {
+                name: $("#name", this).val(),
+                desc: $("#desc", this).val(),
+                end_date: $("#end_date", this).val(),
+            };
+            $.post("<?php echo APPLICATION_BASEURL_INDEX ?>/index/save", params, function(data) {
+                if (data.success == 1) {
+                    $(".form-message").addClass("alert-success");
+                    document.location = '<?php echo APPLICATION_BASEURL_INDEX ?>/index';
+                    return;
+                } else {
+                    $(".form-message").addClass("alert-error");
+                    //Now add the errors to the elements...
+                    $.each(data.errors, function(key, el) {
+                        console.log(el.length);
+                        if (el.length != 0) {
+                            //Define the message
+                            var errorMessage = [];
+                            for (var i = 0; i < el.length; i++) {
+                                var m = el[i];
+                                if (el[i] == "isEmpty") {
+                                    m = "This field cannot be empty";
+                                } else if (el[i] == "dateFalseFormat") {
+                                    m = "Date format is wrong. Please use dd.mm.YYYY"
+                                }
+                                errorMessage.push(m);
+                            }
+                            $("dd#" + key + "-element").append(
+                                $("<div>")
+                                    .addClass("form-inline-error-message")
+                                    .addClass("alert")
+                                    .addClass("alert-error")
+                                    .html(errorMessage.join("<br />"))
+                            )
+                        }
+                    });
+                }
+                $(".form-message")
+                    .removeClass("hidden")
+                    .html(data.message);
+            }, 'json');
             return false;
-        })
-    })
+        });
+    });
 </script>

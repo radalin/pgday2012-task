@@ -34,7 +34,7 @@ class Task extends Zend_Db_Table_Row
         if (null === $this->end_date) {
             return "";
         }
-        return date("d.m.Y H:i:s", strtotime($this->end_date));
+        return date("d.m.Y", strtotime($this->end_date));
     }
     
     public function save()
@@ -50,6 +50,11 @@ class Task extends Zend_Db_Table_Row
             }
             return $_id;
         }
+    }
+    
+    public function remove()
+    {
+        $this->_table->delete($table->getAdapter()->quoteInto('id = ?', $this->id));
     }
     
     public function getDiffToThisDay($date = "now")

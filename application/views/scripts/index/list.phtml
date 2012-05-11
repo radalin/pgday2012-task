@@ -66,8 +66,18 @@
                     <?php if (!$task->isDone()) { ?>
                         <a href="<?php printf(APPLICATION_BASEURL_INDEX . "/index/complete/?id=%d", $task->id) ?>" class="btn-mini btn-success complete-btn">Complete</a>
                     <?php } ?>
+                    <a href="<?php printf(APPLICATION_BASEURL_INDEX . "/index/delete/?id=%d", $task->id) ?>" class="btn-mini btn-danger delete-btn">Remove</a>
                 </td>
             </tr>
         <?php } ?>
     </tbody>
 </table>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $(".delete-btn").off().on("click", function() {
+            if (!confirm("Are you about this? I mean it will be truly lost?")) {
+                return false;
+            }
+        });
+    });
+</script>

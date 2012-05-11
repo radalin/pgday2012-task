@@ -10,10 +10,6 @@
   float: left;
 }
 
-a {
-    text-decoration: none;
-}
-
 body {
     font-size: 15px;
     font-family: Verdana;
@@ -41,14 +37,6 @@ body {
     color: #7172AB;
     margin-bottom: 10px;
     text-align: right;
-}
-
-.middle a {
-    color: #555555;
-}
-
-.middle a:hover{
-    text-decoration: underline;
 }
 
 .container {
@@ -113,16 +101,6 @@ textarea {
 
 input, select {
   width: 380px;
-}
-
-.navigation {
-  float: right;
-  margin-right: 30px;
-  margin-top: 20px;
-}
-
-.navigation .menu-item {
-  margin-right: 10px;
 }
 
 form.well ul.errors li {

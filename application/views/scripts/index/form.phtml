@@ -1,0 +1,12 @@
+<h2>Add New Task</h2>
+<?php echo $this->form;?>
+<script type="text/javascript" charset="utf-8">
+    //Let's override the form's submit action...
+    $(document).ready(function() {
+        $("#new-task-form").submit(function() {
+            //TODO: Send the request to the back end and adjust the form...
+            alert("Your Task is saved");
+            return false;
+        })
+    })
+</script>

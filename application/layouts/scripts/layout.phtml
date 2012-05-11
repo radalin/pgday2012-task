@@ -31,16 +31,49 @@
 </head>
 <body>
     <div class="container">
-        <a href="<?=APPLICATION_INDEX_FILE?>/index/">
-            <div class="header"></div>
-        </a>
+        <div class="top">
+            <a href="<?=APPLICATION_BASEURL_INDEX?>/index">
+                <div class="header"></div>
+            </a>
+        </div>
         <div class="clear">
         <div class="content">
             <div class="middle">
                 <h1><?php echo $this->title; ?></h1>
-                <?php echo $this->layout()->content; ?>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" id="task-nav">
+                        <li class="active"><a href="#task-list" data-toggle="tab">Current</a></li>
+                        <li class=""><a href="#task-add-new-form" data-toggle="tab">Add New</a></li>
+                    </ul>
+                    <div class="tab-content" style="border-color: #DDD transparent #DDD #DDD; ">
+                        <div class="tab-pane active" id="task-list">
+                        </div>
+                        <div class="tab-pane" id="task-add-new-form">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <script type="text/javascript" charset="utf-8">
+         	$(document).ready(function() {
+        		$('#task-add-new-form').load('<?=APPLICATION_BASEURL_INDEX?>/index/form', function(data) {
+        			$('#task-nav').tab();
+        		});
+                
+                $('#task-list').load('<?=APPLICATION_BASEURL_INDEX?>/index/list', function(data) {
+        			$('#task-nav').tab();
+        		});
+                
+        		$('#task-nav').bind('change', function(e) {
+        			var pattern=/#.+/gi //set a regex pattern (all the things after "#").
+        			var contentID = e.target.toString().match(pattern)[0]; //find pattern
+
+        			$(contentID).load('/'+contentID.replace('#',''), function(){
+        				$('#task-nav').tab(); //reinitialize tabs
+        			});
+        		});
+        	});
+        </script>
         <div class="footer">
             <div class="promote">
                 <div class="text">

@@ -21,14 +21,56 @@
 class IndexController extends Zend_Controller_Action
 {
 
+    /**
+     * Add New Task Form
+     *
+     * @var Zend_Form
+     */
+    private $_addForm;
+
     public function init()
     {
         $this->view->title = "PZFP: A Todo List";
+        $this->_addForm = $this->_newTaskForm();
+        $this->_helper->layout->disableLayout();
     }
 
     public function indexAction()
     {
-        // action body
+        $this->_helper->layout->enableLayout();
+    }
+    
+    public function listAction()
+    {
+        
+    }
+    
+    public function formAction()
+    {
+        //TODO: Fill in the form details...
+        $this->view->form = $this->_addForm;
+    }
+    
+    public function saveAction()
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+        if ($this->_addForm->isValid($_POST)) {
+            echo "You Task is saved!";
+        }
+    }
+    
+    private function _newTaskForm()
+    {
+        $form = new Zend_Form();
+        $form->setAction(APPLICATION_BASEURL_INDEX . "/index/save");
+        $form->setMethod("POST");
+        $form->setAttrib("id", "new-task-form");
+        $name = $form->createElement("text", "name");
+        $submit = $form->createElement("submit", "save-btn");
+        $submit->setAttrib("class", "btn btn-primary");
+        
+        $form->addElements(array($name, $submit));
+        return $form;
     }
 }
 
